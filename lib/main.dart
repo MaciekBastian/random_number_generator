@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'config/injectable_container.dart';
 import 'provider/generator_cubit.dart';
+import 'routes/drawing.dart';
 import 'routes/home.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<GeneratorCubit>(),
+      create: (context) => getIt<GeneratorCubit>()..init(),
       child: MaterialApp(
         title: 'Generator',
         initialRoute: '/',
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         ),
         routes: {
           '/': (context) => const HomePage(),
+          Drawing.pageName: (context) => const Drawing(),
         },
       ),
     );
